@@ -2,19 +2,18 @@
  * My testing trading network
  */
 namespace org.acme.testnetwork
-asset House identified by tradingSymbol {
-    o String tradingSymbol
+asset Estate identified by estateId {
+    o String estateId
     o String description
-    o String mainExchange
-    o Double quantity
     --> Trader owner
 }
 participant Trader identified by tradeId {
-    o String tradeId
+    o String tradeId				// Identification card
     o String firstName
     o String lastName
 }
-transaction Trade {
-    --> House commodity
+
+transaction addTrade {
+    --> Estate estate
     --> Trader newOwner
 }

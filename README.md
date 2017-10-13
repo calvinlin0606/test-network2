@@ -1,57 +1,55 @@
 # My Testing Trading network
 
-> This is the "Hello World" of Hyperledger Composer samples, which demonstrates the core functionality of Hyperledger Composer by changing the value of an asset.
+> This is the testing sample of estate trading.
 
 This business network defines:
 
 **Participant**
-`SampleParticipant`
+`Trader`	
 
 **Asset**
-`SampleAsset`
+`Estate`
 
 **Transaction**
-`SampleTransaction`
+`Trade`
 
 **Event**
 `SampleEvent`
 
-SampleAssets are owned by a SampleParticipant, and the value property on a SampleAsset can be modified by submitting a SampleTransaction. The SampleTransaction emits a SampleEvent that notifies applications of the old and new values for each modified SampleAsset.
-
 To test this Business Network Definition in the **Test** tab:
 
-Create a `SampleParticipant` participant:
+Create a `Trader` participant:
 
 ```
 {
-  "$class": "org.acme.sample.SampleParticipant",
-  "participantId": "Toby",
+  "$class": "org.acme.sample.Trader",
+  "traderId": "12345678",
   "firstName": "Tobias",
   "lastName": "Hunter"
 }
 ```
 
-Create a `SampleAsset` asset:
+Create a `Estate` asset:
 
 ```
 {
-  "$class": "org.acme.sample.SampleAsset",
-  "assetId": "assetId:1",
-  "owner": "resource:org.acme.sample.SampleParticipant#Toby",
-  "value": "original value"
+  "$class": "org.acme.sample.Estate",
+  "estateId": "assetId:1",
+  "owner": "resource:org.acme.sample.Trader#12345678",
+  "value": "original description"
 }
 ```
 
-Submit a `SampleTransaction` transaction:
+Submit a `addTrade` transaction:
 
 ```
 {
-  "$class": "org.acme.sample.SampleTransaction",
-  "asset": "resource:org.acme.sample.SampleAsset#assetId:1",
-  "newValue": "new value"
+  "$class": "org.acme.sample.addTrade",
+  "asset": "resource:org.acme.sample.Estate#assetId:1",
+  "newValue": "new description"
 }
 ```
 
-After submitting this transaction, you should now see the transaction in the Transaction Registry and that a `SampleEvent` has been emitted. As a result, the value of the `assetId:1` should now be `new value` in the Asset Registry.
+After submitting this transaction, you should now see the transaction in the Transaction Registry and that a `SampleEvent` has been emitted. As a result, the value of the `assetId:1` should now be `new description` in the Asset Registry.
 
 Congratulations!
